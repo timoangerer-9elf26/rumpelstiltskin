@@ -3,6 +3,10 @@
 Config files stay backward compatible: a config that works with one release works
 with every later one.
 
+## Unreleased
+
+- `rumpel --version`.
+
 ## 0.1.0 — 2026-11-24
 
 First public release, previously an internal tool named `slack-bot`.

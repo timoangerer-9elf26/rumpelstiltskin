@@ -22,6 +22,7 @@ use tokio_tungstenite::tungstenite::Message as Ws;
 /// Tokens: SLACK_BOT_TOKEN (xoxb-) and, for `run`, SLACK_APP_TOKEN (xapp-), from the
 /// environment or ~/.config/rumpel/bot-token and app-token.
 #[derive(Parser)]
+#[command(version)]
 struct Cli {
     #[command(subcommand)]
     cmd: Cmd,
