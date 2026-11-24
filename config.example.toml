@@ -1,0 +1,74 @@
+# ~/.config/rumpel/config.toml. `rumpel setup` writes a starting version of it.
+# Tokens never go in this file. They come from SLACK_BOT_TOKEN (xoxb-) and
+# SLACK_APP_TOKEN (xapp-) or from ~/.config/rumpel/bot-token and app-token.
+# Changes here take effect after restarting `rumpel run`.
+
+# Your Slack user id (profile -> ⋮ -> Copy member ID); `from = "owner"` means this person.
+owner = "U0123456789"
+
+# Agents may write only in channels the bot was invited to (default). true lets
+# them post anywhere; Slack then also needs the app scope chat:write.public.
+# write_anywhere = false
+
+# Thread/channel -> Paseo agent ids, kept across restarts.
+# Default: ~/.local/state/rumpel/sessions.json (write a full path here, no ~).
+# state_file = "/home/you/.local/state/rumpel/sessions.json"
+
+# Every trigger starts or continues a Paseo agent through the paseo CLI.
+[paseo]
+# bin = "paseo"
+# host = "localhost:6767"         # another daemon; local one when unset
+provider = "claude/sonnet"
+mode = "bypassPermissions"        # unattended: no permission prompts. Read the README's security section.
+
+# listen:  "all" (every message) or "mention" (only when @mentioned)
+# from:    "owner", "everyone" or a list of user/bot ids (bots count as senders)
+# ignore:  user/bot ids that never trigger, even if `from` allows them
+# session: "thread" (one agent per Slack thread, default), "channel" (one agent
+#          for the whole channel) or "new" (fresh agent per message)
+# repo:    checkout the new agent's worktree workspace is created from
+# agent:   instead of repo/session, send everything to this existing agent
+# provider: optional, overrides [paseo] provider for new agents of this entry
+# reaction: emoji name without colons (e.g. "robot_face"); adding it to a message
+#          triggers on that message, also in "mention" channels
+# workspace: "worktree" (default, fresh worktree per agent) or "local" (work
+#          in repo itself, so the agent can commit memory and skills)
+# hints:   explain rumpel in every prompt (default true); false when the
+#          repo is an agent home whose AGENTS.md explains it (rumpel init)
+# loading: Slack's "is working" indicator, default true. It only exists in a
+#          thread, so in DMs it opens one; :eyes: on the message stays either way
+[[channel]]
+id = "C0123456789" # channel details -> About, at the bottom
+listen = "mention"
+from = "owner"
+repo = "/home/you/code/some-project"
+session = "thread"
+
+# Every other channel the bot is invited to: id = "*" applies to channels
+# without an entry of their own, so inviting the bot is enough.
+# [[channel]]
+# id = "*"
+# listen = "mention"
+# from = "owner"
+# repo = "/home/you/code/my-bot"
+# reaction = "robot_face"
+
+# [[channel]]
+# id = "C0XXXXXXXXX"
+# listen = "all"
+# from = "everyone"            # only where you would give every member a shell on this machine
+# ignore = ["B0NOISYBOT"]
+# agent = "5a278580-cc40-48e1-9a68-bc719677e410"
+
+# Direct messages to the bot: id = "dm" matches every DM. "channel" keeps one
+# ongoing agent per DM partner; drop this block to ignore DMs. Here the agent
+# works in its own home repo (rumpel init).
+[[channel]]
+id = "dm"
+listen = "all"
+from = "owner"
+repo = "/home/you/code/my-bot"
+workspace = "local"
+hints = false
+session = "channel"
+loading = false

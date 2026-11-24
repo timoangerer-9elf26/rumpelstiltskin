@@ -1,0 +1,30 @@
+# Rumpel, the author's bot: one home repo for everything, triggered by @mention,
+# by the :rumpel: emoji, and by any DM from the owner. Ids are placeholders.
+owner = "U0123456789"
+
+[paseo]
+provider = "claude/sonnet"
+mode = "bypassPermissions"
+
+# Every channel Rumpel is invited to; new channels need no config change.
+[[channel]]
+id = "*"
+listen = "mention"
+from = "owner"
+repo = "/home/timo/_repos/9elf26/rumpel"   # the home repo, made with `rumpel init`
+workspace = "local"
+hints = false
+session = "thread"
+reaction = "rumpel"
+
+# DMs: one ongoing agent per DM partner, answering in the chat.
+[[channel]]
+id = "dm"
+listen = "all"
+from = "owner"
+repo = "/home/timo/_repos/9elf26/rumpel"
+workspace = "local"
+hints = false
+session = "channel"
+reaction = "rumpel"
+loading = false

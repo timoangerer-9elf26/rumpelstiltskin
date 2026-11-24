@@ -1,0 +1,43 @@
+# Rumpel, the author's instance: a German-speaking bot. Your own: `rumpel manifest --name <Name>`.
+display_information:
+  name: rumpel
+  description: Spinne Stroh zu Gold… 🏅
+features:
+  bot_user:
+    display_name: Rumpel
+    always_online: true
+  app_home:
+    messages_tab_enabled: true            # lets people DM the bot
+    messages_tab_read_only_enabled: false
+  agent_view:
+    agent_description: Spinne Stroh zu Gold… 🏅 (für Timo)
+oauth_config:
+  scopes:
+    bot:
+      - assistant:write      # loading indicator (agents.sessions.setStatus)
+      - chat:write
+      - chat:write.public    # used only with write_anywhere = true in config.toml
+      - reactions:write
+      - reactions:read
+      - channels:history     # receive and read public channels
+      - groups:history       # receive and read private channels
+      - im:history           # message.im, required by agent_view
+      - im:read              # DM info (conversations.info) and listing DMs
+      - channels:read
+      - groups:read
+      - users:read
+      - emoji:read           # check custom emoji names for `reaction`
+      - files:read
+      - files:write
+settings:
+  event_subscriptions:
+    bot_events:
+      - message.channels
+      - message.groups
+      - message.im           # required by agent_view; DMs are ignored unless configured
+      - app_home_opened      # required by agent_view
+      - reaction_added       # emoji trigger (`reaction` in config.toml)
+      - reaction_removed     # not used by the bot yet
+  socket_mode_enabled: true
+  org_deploy_enabled: false
+  token_rotation_enabled: false
