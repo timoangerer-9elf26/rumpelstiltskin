@@ -10,7 +10,7 @@ features:
     messages_tab_enabled: true            # lets people DM the bot
     messages_tab_read_only_enabled: false
   agent_view:
-    agent_description: Spinne Stroh zu Gold… 🏅 (für Timo)
+    agent_description: Spinne Stroh zu Gold… 🏅
 oauth_config:
   scopes:
     bot:
