@@ -6,6 +6,8 @@ with every later one.
 ## Unreleased
 
 - `rumpel --version`.
+- Prompts ask the agent to reply in the language of the Slack message.
+- README: what you can do with it.
 
 ## 0.1.0 — 2026-11-24
 

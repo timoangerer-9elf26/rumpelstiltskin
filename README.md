@@ -15,6 +15,28 @@ events across all open connections, so run exactly one `rumpel run` per app.
 
 Not an official Slack or Paseo project.
 
+## What you can do with it
+
+- **Hand off work from any channel.** Mention the bot ("@Rumpel the export test is
+  flaky again, find out why and open a PR"). It starts an agent in a fresh worktree
+  of the repo you configured for that channel, shows Slack's "is working" indicator
+  and answers in the thread. Follow-ups in the thread go to the same agent.
+- **DM it like a colleague.** Direct messages can go to one long-running agent that
+  keeps the conversation's context ("what did we decide about the retry logic
+  yesterday?").
+- **Forward a message with an emoji.** Add your bot's emoji (e.g. `:rumpel:`) to any
+  message, a bug report from a customer channel or a question from a teammate, and
+  the agent picks it up without anyone typing a mention.
+- **Let long jobs report back.** The agent decides how often it writes: a short
+  "on it", progress updates, the result with files attached (screenshots, reports),
+  or nothing when nothing is needed.
+- **Post from anywhere.** Scheduled agents and scripts on the same machine use
+  `rumpel post` to send nightly reports or alerts as the bot instead of as you.
+- **Give it a memory.** `rumpel init` creates a home repo with instructions, memory
+  and skills that the agent keeps up to date and commits itself.
+
+<!-- screenshot: docs/images/thread.png -->
+
 ## Install
 
 Prerequisites: a running Paseo daemon with Claude Code or Codex logged in, on macOS

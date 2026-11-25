@@ -380,10 +380,12 @@ fn prompt(msg: &Message, thread: &str, hints: bool) -> String {
         (None, false) => format!("{ch}, directly in the channel (message {})", msg.ts),
     };
     let head = format!("Slack message from <@{}> in {place}:\n\n{}", msg.sender().unwrap_or("?"), msg.text);
+    // Agents with non-English homes drifted into their home's language; naming it here helped.
+    let language = "Write the reply in the language of the Slack message above, including any descriptions you quote.";
     if !hints {
-        return format!("{head}\n\n---\nReply with `rumpel` as described in AGENTS.md.");
+        return format!("{head}\n\n---\nReply with `rumpel` as described in AGENTS.md. {language}");
     }
-    format!("{head}\n\n---\n{}", tool_hints(msg, thread))
+    format!("{head}\n\n---\n{}\n{language}", tool_hints(msg, thread))
 }
 
 fn tool_hints(msg: &Message, thread: &str) -> String {
