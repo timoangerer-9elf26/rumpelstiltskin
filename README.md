@@ -35,7 +35,7 @@ Not an official Slack or Paseo project.
 - **Give it a memory.** `rumpel init` creates a home repo with instructions, memory
   and skills that the agent keeps up to date and commits itself.
 
-<!-- screenshot: docs/images/thread.png -->
+![A mention in a channel: Rumpel answers in the thread](docs/images/thread.png)
 
 ## Install
 
